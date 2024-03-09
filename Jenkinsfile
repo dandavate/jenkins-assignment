@@ -1,22 +1,27 @@
 pipeline {
     agent any
+
     stages {
-        stage('fetch') {
+        stage('SCM') {
             steps {
-                script {
-                    git branch: 'develop', url: 'https://github.com/dandavate/jenkins-assignment.git'
-                }
+                git branch: 'develop', url: 'https://github.com/dandavate/jenkins-assignment.git'
             }
         }
-
-        stage('build') {
-
+        
+        stage('Docker Build') {
             steps {
-                script {
-                    docker -t . develop-image
-                    }
-                }
+                sh 'docker -t . sample-image'
             }
         }
+        
+         stage('Final') {
+            steps {
+                echo 'Docker build successfull'
+            }
+        }
+        
     }
+}
+
+
 
