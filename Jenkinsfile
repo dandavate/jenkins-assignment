@@ -10,7 +10,7 @@ pipeline {
         
         stage('Docker Build') {
             steps {
-                sh 'docker build -t test:latest .'
+                sh 'sudo docker build -t test:latest .'
             }
         }
         
