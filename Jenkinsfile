@@ -4,7 +4,7 @@ pipeline {
     stages {
         stage('SCM') {
             steps {
-                git branch: 'develop', url: 'https://github.com/dandavate/jenkins-assignment.git'
+                git branch: 'master', url: 'https://github.com/dandavate/jenkins-assignment.git'
             }
         }
         
