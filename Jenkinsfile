@@ -10,6 +10,9 @@ pipeline {
         
         stage('Docker Build') {
             steps {
+                sh 'docker container stop prod'
+                sh 'docker container rm -rf prod'
+                sh 'docker image rmi prod'
                 sh 'docker build -t prod:latest .'
             }
         }
