@@ -9,7 +9,7 @@ pipeline {
         }
 
 
-        stage('Preparation') {
+        stage('Pre Build') {
             steps {
                 script {
                     // Define your Docker image name and container name
@@ -24,6 +24,8 @@ pipeline {
                         echo "Stopping and removing existing Docker container: ${containerName}"
                         sh "docker stop ${containerName}"
                         sh "docker rm ${containerName}"
+                    } else {
+                        echo "No existing Docker container found with name: ${containerName}"
                     }
                     
                     // Remove the Docker image if it exists
@@ -31,6 +33,8 @@ pipeline {
                     if (isImageExists) {
                         echo "Removing existing Docker image: ${dockerImage}"
                         sh "docker rmi ${dockerImage}"
+                    } else {
+                        echo "No existing Docker image found with name: ${dockerImage}"
                     }
                 }
             }
